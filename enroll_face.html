@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Enrollment</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
+</head>
+<body>
+    <div class="brand-header">
+        <div>Liveness<span>Pro</span></div>
+        <select id="langSelect" class="lang-select">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+        </select>
+    </div>
+    <div class="container dashboard-container">
+        <div class="header-bar">
+            <h1 data-i18n="enroll_title">Face Registration</h1>
+            <button id="logoutBtn" class="logout-btn" data-i18n="logout_btn">Log Out</button>
+        </div>
+
+        <div class="card" id="enrollCard">
+            <!-- Loading Indicator -->
+            <div id="loadingState" style="text-align: center; padding: 2rem 0;">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: 1rem; color: var(--text-muted);" data-i18n="loading">Initializing Models & Camera...</p>
+            </div>
+
+            <!-- Enrollment Interface -->
+            <div id="enrollInterface" class="hidden">
+                <div class="instruction-box">
+                    <div id="instructionText" class="instruction-text" data-i18n="enroll_instruction">Please look directly into the camera</div>
+                </div>
+
+                <div class="video-wrapper">
+                    <video id="video" autoplay muted playsinline></video>
+                    <canvas id="overlay"></canvas>
+                </div>
+
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <div id="statusBadge" class="status-badge status-verifying hidden">...</div>
+                    <button id="enrollBtn" class="btn hidden" data-i18n="enroll_btn" style="width:100%">Register My Face</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="i18n.js"></script>
+    <script defer src="script.js"></script>
+</body>
+</html>

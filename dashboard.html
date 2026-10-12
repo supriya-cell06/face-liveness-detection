@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liveness Detection Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Load face-api.js from CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
+</head>
+<body>
+    <div class="brand-header">
+        <div>Liveness<span>Pro</span></div>
+        <select id="langSelect" class="lang-select">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+        </select>
+    </div>
+    <div class="container dashboard-container">
+        <div class="header-bar">
+            <h1 data-i18n="dashboard_title">Liveness Verification</h1>
+            <button id="logoutBtn" class="logout-btn" data-i18n="logout_btn">Log Out</button>
+        </div>
+
+        <div class="card" id="detectionCard">
+            <!-- Loading Indicator -->
+            <div id="loadingState" style="text-align: center; padding: 2rem 0;">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: 1rem; color: var(--text-muted);" data-i18n="loading">Initializing Models & Camera...</p>
+            </div>
+
+            <!-- Main Interface (Hidden initially) -->
+            <div id="livenessInterface" class="hidden">
+                <div class="instruction-box">
+                    <div id="instructionText" class="instruction-text" data-i18n="instruction_wait">Position your face in the frame</div>
+                    <div id="timer" class="timer">--</div>
+                </div>
+
+                <div class="video-wrapper">
+                    <video id="video" autoplay muted playsinline></video>
+                    <canvas id="overlay"></canvas>
+                </div>
+
+                <div style="text-align: center;">
+                    <div id="statusBadge" class="status-badge status-verifying hidden" data-i18n="verifying">Verifying...</div>
+                    <button id="retryBtn" class="btn hidden" style="margin-top: 1rem;" data-i18n="retry_btn">Retry</button>
+                </div>
+            </div>
+
+            <!-- Access Granted Screen -->
+            <div id="accessGrantedScreen" class="hidden access-granted-container">
+                <div class="checkmark-circle">
+                    <svg viewBox="0 0 52 52">
+                        <circle class="checkmark-circle-path" cx="26" cy="26" r="25" fill="none" />
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                </div>
+                <h2 data-i18n="access_granted">ACCESS GRANTED</h2>
+            </div>
+
+            <!-- Quote Container -->
+            <div id="quoteContainer" class="quote-container hidden">
+                <p id="quoteText" class="quote-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="i18n.js"></script>
+    <script defer src="script.js"></script>
+</body>
+</html>
